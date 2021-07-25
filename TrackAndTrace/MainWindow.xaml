@@ -1,0 +1,71 @@
+﻿<Window x:Class="TrackAndTrace.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TrackAndTrace"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="669.38" Width="1200">
+    <Grid Margin="0,0,-0.4,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="869*"/>
+            <ColumnDefinition Width="325*"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="btnAddPerson" Content="Add Person" HorizontalAlignment="Left" Margin="37,154,0,0" VerticalAlignment="Top" Width="116" Click="btnAddPerson_Click" Height="19"/>
+        <TextBox x:Name="txtBoxPhoneNumberTrack" HorizontalAlignment="Left" Height="23" Margin="38,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="115" Text="e.g 07777123456" />
+        <Label Content="User's Phone Number" HorizontalAlignment="Left" Margin="37,85,0,0" VerticalAlignment="Top" Height="26" Width="125"/>
+        <TextBox x:Name="txtBoxAddressTrack" HorizontalAlignment="Left" Height="23" Margin="230,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.5,0.5">
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="1.833"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="0.368"/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <Label Content="Location's Address" HorizontalAlignment="Left" Margin="231,85,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="25" Width="109">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="2.166"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="0.484"/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+        <Button x:Name="btnAddLocation" Content="Add Location" HorizontalAlignment="Left" Margin="230,154,0,0" VerticalAlignment="Top" Width="120" Click="btnAddLocation_Click" Height="19"/>
+        <TextBox x:Name="txtBoxDateAndTimeTrack" HorizontalAlignment="Left" Height="24" Margin="229,221,0,0" TextWrapping="Wrap" Text="dd/mm/yyyy hh:mm" VerticalAlignment="Top" Width="121"/>
+        <Label Content="Check In/Contact &#xD;&#xA;Date and Time" HorizontalAlignment="Left" Margin="228,179,0,0" VerticalAlignment="Top" Height="42" Width="104"/>
+        <Button x:Name="btnCheckInMainWindow" Content="Check In" HorizontalAlignment="Left" Margin="228,335,0,0" VerticalAlignment="Top" Width="115" Click="btnCheckInMainWindow_Click_1" Height="19"/>
+        <Button x:Name="btnRecordContact" Content="Record Contact" HorizontalAlignment="Left" Margin="39,335,0,0" VerticalAlignment="Top" Width="115" Click="btnRecordContact_Click" Height="19"/>
+        <Calendar x:Name="calendarMainWindow" HorizontalAlignment="Left" Margin="-414,53,0,0" VerticalAlignment="Top" Height="176" Width="188"/>
+        <TextBox x:Name="txtBoxIDMai" HorizontalAlignment="Left" Height="23" Margin="517,609,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+        <Label Content="User ID Number" HorizontalAlignment="Left" Margin="518,578,0,0" VerticalAlignment="Top" Height="26" Width="96"/>
+        <TextBox x:Name="txtBoxLocationIDTrack" HorizontalAlignment="Left" Height="22" Margin="229,289,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Check in Location ID" HorizontalAlignment="Left" Margin="228,263,0,0" VerticalAlignment="Top" Width="165" Height="26"/>
+        <ListBox x:Name="listBoxMainWindow" HorizontalAlignment="Left" Height="435" Margin="384,71,0,0" VerticalAlignment="Top" Width="365"/>
+        <Button x:Name="btnDisplayAllPeople" Content="Display People" HorizontalAlignment="Left" Margin="39,487,0,0" VerticalAlignment="Top" Width="114" Click="btnDisplayAllPeople_Click" Height="19"/>
+        <Button x:Name="btnDisplayLocations" Content="Display Locations" HorizontalAlignment="Left" Margin="230,487,0,0" VerticalAlignment="Top" Width="115" Click="btnDisplayLocations_Click" Height="19" />
+        <TextBox x:Name="txtBoxStartDateTrace" HorizontalAlignment="Left" Height="23" Margin="788,179,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="dd/mm/yyyy hh:mm" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="txtBoxEndDateTrace" HorizontalAlignment="Left" Height="24" Margin="62.2,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="dd/mm/yyyy hh:mm" Grid.Column="1"/>
+        <Label Content="Start Date" HorizontalAlignment="Left" Margin="788,157,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.391,0.477" Width="145" Grid.ColumnSpan="2" Height="26"/>
+        <Label Content="End Date" HorizontalAlignment="Left" Margin="58.2,157,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.391,0.477" Width="145" Grid.Column="1" Height="26"/>
+        <Button x:Name="btnSearchForContactsMainWindow" Content="Search for Contacts" HorizontalAlignment="Left" Margin="788,242,0,0" VerticalAlignment="Top" Width="119" Click="btnSearchForContactsMainWindow_Click" Grid.ColumnSpan="2" Height="19"/>
+        <Button x:Name="btnSearchForVisits" Content="Search For Visits" HorizontalAlignment="Left" Margin="62.2,242,0,0" VerticalAlignment="Top" Width="120" Click="btnSearchForVisits_Click" Grid.Column="1" Height="19" />
+        <Button x:Name="btnShowAllVisits" Content="Show all visits" HorizontalAlignment="Left" Margin="58.2,487,0,0" VerticalAlignment="Top" Width="122" Click="btnShowAllVisits_Click" Height="19" Grid.Column="1"/>
+        <TextBox x:Name="txtBoxContactUserIDTrace" HorizontalAlignment="Left" Height="23" Margin="788,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="Numbers only" SelectionOpacity="0.8" Grid.ColumnSpan="2"/>
+        <Label Content="Contact User ID" HorizontalAlignment="Left" Margin="788,93,0,0" VerticalAlignment="Top" Width="96" Grid.ColumnSpan="2" Height="26"/>
+        <Button x:Name="btnShowAllContacts" Content="Show All Contacts" HorizontalAlignment="Left" Margin="788,487,0,0" VerticalAlignment="Top" Width="119" Click="btnShowAllContacts_Click" Height="19" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="txtBoxVisitedLocationTrace" HorizontalAlignment="Left" Height="24" Margin="58.2,119,0,0" TextWrapping="Wrap" Text="Numbers only" VerticalAlignment="Top" Width="124" Grid.Column="1"/>
+        <Label Content="Visited Location ID" HorizontalAlignment="Left" Margin="54.2,93,0,0" VerticalAlignment="Top" Width="124" Grid.Column="1" Height="26"/>
+        <Label Content="Track" HorizontalAlignment="Left" Margin="162,6,0,0" VerticalAlignment="Top" Width="276" FontSize="24" Height="42"/>
+        <Label Content="Trace" HorizontalAlignment="Left" Margin="0.2,10,0,0" VerticalAlignment="Top" Width="70" FontSize="24" Grid.Column="1" Height="42"/>
+        <TextBox x:Name="txtBoxContactUserIDTrack" HorizontalAlignment="Left" Height="23" Margin="39,288,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="115"/>
+        <Label Content="Contact User ID" HorizontalAlignment="Left" Margin="34,257,0,0" VerticalAlignment="Top" Width="102" Height="25"/>
+        <TextBox x:Name="txtBoxUserIDTrack" HorizontalAlignment="Left" Height="23" Margin="39,222,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="115" TextChanged="txtBoxUserIDTrack_TextChanged"/>
+        <Label Content="User ID" HorizontalAlignment="Left" Margin="38,190,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnSaveUsersTrack" Content="Save Users" HorizontalAlignment="Left" Margin="34,400,0,0" VerticalAlignment="Top" Width="119"/>
+
+    </Grid>
+</Window>
