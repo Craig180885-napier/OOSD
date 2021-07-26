@@ -151,7 +151,7 @@ namespace TrackAndTrace
             }
             else
             {
-                string recordSuccessMessage = "Date cannot be empty : - ";
+                string recordSuccessMessage = "Contact recoded between User : " + userID + " and User " + contactUserID + " at : " + DateTime.Parse(dateTime);
                 tr.addContact(int.Parse(userID), int.Parse(contactUserID), DateTime.Parse(dateTime));
                 return recordSuccessMessage;
             }
@@ -173,9 +173,14 @@ namespace TrackAndTrace
         }
 
         // TODO : Add validation for User ID, location ID and Date that ensures the strings can be parsed
-        public void checkIn(string UserID, string locationID, string dateTime)
+        public string checkIn(string UserID, string locationID, string dateTime)
         {
+            string checkInSuccessMessage = "User :" + UserID + " has been checked into \n" +
+                                           "location ID : " + locationID + "\n" + 
+                                           "at : " + DateTime.Parse(dateTime) + "\n" +
+                                           lineBreak() + "\n";
             tr.checkIn(int.Parse(UserID), int.Parse(locationID), DateTime.Parse(dateTime));
+            return checkInSuccessMessage;
         }
     }
 }

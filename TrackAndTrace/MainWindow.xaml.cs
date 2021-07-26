@@ -69,8 +69,8 @@ namespace TrackAndTrace
         private void btnRecordContact_Click(object sender, RoutedEventArgs e)
         {
             // Validates that the date entered is parsable and adds the contact if so
-            q.recordContactDateValidation(txtBoxUserIDTrack.Text, txtBoxContactUserIDTrack.Text, txtBoxDateAndTimeTrack.Text);
-            // not done
+            listBoxMainWindow.Items.Add(q.recordContactDateValidation(txtBoxUserIDTrack.Text, txtBoxContactUserIDTrack.Text, txtBoxDateAndTimeTrack.Text));
+            // done
         }
 
         // Person Interaction :
@@ -83,8 +83,8 @@ namespace TrackAndTrace
         // TODO wrap the body of this method in its own method and call
         private void btnSearchForContactsMainWindow_Click(object sender, RoutedEventArgs e)
         {
-            q.searchForContactsQuery(txtBoxStartDateTrace.Text, txtBoxContactUserIDTrace.Text);
-            // not done
+            listBoxMainWindow.Items.Add(q.searchForContactsQuery(txtBoxStartDateTrace.Text, txtBoxContactUserIDTrace.Text));
+            // done
         }
 
         /*
@@ -94,22 +94,22 @@ namespace TrackAndTrace
         // Location Interaction : Button click adds a location with the deatils in the corrosponding text boxes
         private void btnAddLocation_Click(object sender, RoutedEventArgs e)
         {
-            q.addLocationValidation(txtBoxAddressTrack.Text);   
-            // not done
+            listBoxMainWindow.Items.Add(q.addLocationValidation(txtBoxAddressTrack.Text));   
+            // done
         }
 
         // Location Interaction : Shows all of the locations that have been created
         private void btnDisplayLocations_Click(object sender, RoutedEventArgs e)
         {
-            q.getAllLocationsQuery();
-            // not done
+            listBoxMainWindow.Items.Add(q.getAllLocationsQuery());
+            // done
         }
 
         // Location Interaction : Checks a user into a location 
         // TODO Think this XAML link is broken
         private void btnCheckInMainWindow_Click(object sender, RoutedEventArgs e)
         {
-            q.checkIn(txtBoxUserIDTrack.Text, txtBoxLocationIDTrack.Text, txtBoxDateAndTimeTrack.Text);
+            listBoxMainWindow.Items.Add(q.checkIn(txtBoxUserIDTrack.Text, txtBoxLocationIDTrack.Text, txtBoxDateAndTimeTrack.Text));
             // not done
         }
 
@@ -117,22 +117,22 @@ namespace TrackAndTrace
         // Location Interaction : Checks a user into a location 
         private void btnCheckInMainWindow_Click_1(object sender, RoutedEventArgs e)
         {
-            q.checkIn(txtBoxUserIDTrack.Text, txtBoxLocationIDTrack.Text, txtBoxDateAndTimeTrack.Text);
-            // not done
+            listBoxMainWindow.Items.Add(q.checkIn(txtBoxUserIDTrack.Text, txtBoxLocationIDTrack.Text, txtBoxDateAndTimeTrack.Text));
+            // done
         }
 
         // Location Interaction : Shows all of the users that have checked in 
         private void btnShowAllVisits_Click(object sender, RoutedEventArgs e)
         {
-            q.getAllVisitsQuery();
-            // not done
+            listBoxMainWindow.Items.Add(q.getAllVisitsQuery());
+            // done
         }
 
         // Location Interaction :
         private void btnSearchForVisits_Click(object sender, RoutedEventArgs e)
         {
-            q.searchForVisits(txtBoxStartDateTrace.Text, txtBoxEndDateTrace.Text, txtBoxVisitedLocationTrace.Text);
-            // not done
+            listBoxMainWindow.Items.Add(q.searchForVisits(txtBoxStartDateTrace.Text, txtBoxEndDateTrace.Text, txtBoxVisitedLocationTrace.Text));
+            // done
         }
 
       
