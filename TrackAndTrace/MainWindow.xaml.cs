@@ -38,13 +38,13 @@ namespace TrackAndTrace
          * Person interactions
          */
 
-        // Button click adds a Person with the details in the corrosponding text boxes
+        // Person Interaction : Button click adds a Person with the details in the corrosponding text boxes
         private void btnAddPerson_Click(object sender, RoutedEventArgs e)
         {
             newPersonValidation();
-        }      
+        }
 
-        // Helper method for the btnAddPerson_Click event handler
+        // Person Interaction : Helper method for the btnAddPerson_Click event handler
         private void newPersonValidation()
         {
             // This method validate that the phone number meets the criteria and that the User ID is unique, 
@@ -69,7 +69,7 @@ namespace TrackAndTrace
                                                 "- you entered: - " + txtBoxPhoneNumberTrack.Text + "\n" +
                                                 "- Please Try again");
                     lineBreak();
-                    
+
                 }
                 // Phone number is valid, user is added to the person list
                 else
@@ -90,7 +90,8 @@ namespace TrackAndTrace
                 {
                     // If the user ID is not unique then present an error and do not add the person to the list
                     // sets the bool isUnique to false 
-                    if (p.userID == ID.Instance.currentUserID())
+                    //if (p.userID == ID.Instance.currentUserID())
+                    if (p.userID == int.Parse(txtBoxUserIDTrack.Text))
                     {
                         listBoxMainWindow.Items.Add("User ID already exisits, please enter a unique user ID \n");
                         lineBreak();
@@ -99,7 +100,7 @@ namespace TrackAndTrace
                         break;
                     }
                 }
-                              
+
                 if (isUnique == true)
                 {
                     // Holds the text box input in a string variable so that if conditions can be set
@@ -127,57 +128,13 @@ namespace TrackAndTrace
 
                         t.addPerson(ID.Instance.currentUserID(), txtBoxPhoneNumberTrack.Text);
                         ID.Instance.nextUserID();
-                        //ID.Instance.nextUserID();
-                        //txtBoxIDMain.Text = ID.Instance.nextUserID().ToString();
+                  
                     }
                 }
-            }
-
-            // User ID validation Step 2
-            else if (validPeople.Capacity > 0)
-            {
-                foreach (Person p in validPeople.ToList())
-                {
-                    // If the user ID is not unique then present an error and do not add the person to the lis
-                    if (p.userID == ID.Instance.currentUserID())
-                    {
-                        listBoxMainWindow.Items.Add("User ID already exisits, please enter a unique user ID \n");
-                        lineBreak();
-
-                        break;
-                    }
-                    
-                    // If the User ID entered does not exist in the list then proceed to Phone Number validation 
-                    else 
-                    {
-                        string phoneNumber = txtBoxPhoneNumberTrack.Text;
-
-                        // Phone Number Validation, must be 11 integer numbers long, and must begin with a 0
-                        if (!phoneNumber[0].Equals('0') || phoneNumber.Equals(null) || phoneNumber.Length < 11)
-                        {
-                            listBoxMainWindow.Items.Add("Invalid Phone Number entered \n" +
-                                                        "- Your Phone Number Must: \n" +
-                                                        "- Begin With a 0 \n" +
-                                                        "- Be 11 numbers long or more \n" +
-                                                        "- you entered: - " + txtBoxPhoneNumberTrack.Text + "\n" +
-                                                        "- Please Try again");
-                            lineBreak();
-                        }
-
-                        // If the phone number meets the criteria 
-                        else
-                        {
-                            listBoxMainWindow.Items.Add("Capacity > 0 - Phone Number entered is valid - " + txtBoxPhoneNumberTrack.Text);
-                            lineBreak();
-                            t.addPerson(ID.Instance.currentUserID(), txtBoxPhoneNumberTrack.Text);
-                            ID.Instance.nextUserID();       
-                        }
-                    }
-                }
-            }
+            }           
         }
 
-        // Displays every person in the people list in the Main Window List Box
+        // Person Interaction : Displays every person in the people list in the Main Window List Box
         private void btnDisplayAllPeople_Click(object sender, RoutedEventArgs e)
         {
             var v = t.getPeople();
@@ -189,11 +146,24 @@ namespace TrackAndTrace
             }
         }
 
+        // Person Interaction :
+        private void BtnLoadUsers_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        // Person Interaction : Saves the contents of the person list to the CSV file.  Users are appended not overwritten.
+        private void BtnSaveUsersTrack_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        // Person Interaction :
         private void btnRecordContact_Click(object sender, RoutedEventArgs e)
         {
-            DateTime date;                  
+            DateTime date;
             if (DateTime.TryParse(txtBoxDateAndTimeTrack.Text, out date) == false)
-            { 
+            {
                 listBoxMainWindow.Items.Add("Date cannot be empty : - ");
                 lineBreak();
             }
@@ -203,11 +173,14 @@ namespace TrackAndTrace
             }
         }
 
+        // Person Interaction :
         private void btnShowAllContacts_Click(object sender, RoutedEventArgs e)
         {
-           
+
         }
 
+        // Person Interaction :
+        // TODO wrap the body of this method in its own method and call
         private void btnSearchForContactsMainWindow_Click(object sender, RoutedEventArgs e)
         {
             var contactList = t.getContacts();
@@ -242,7 +215,7 @@ namespace TrackAndTrace
          * Location Interactions
          */
 
-        // button click adds a location with the deatils in the corrosponding text boxes
+        // Location Interaction : Button click adds a location with the deatils in the corrosponding text boxes
         private void btnAddLocation_Click(object sender, RoutedEventArgs e)
         {
             //string esd = ;
@@ -254,7 +227,7 @@ namespace TrackAndTrace
             ID.Instance.nextLocationID();
         }
 
-        // Shows all of the locations that have been created
+        // Location Interaction : Shows all of the locations that have been created
         private void btnDisplayLocations_Click(object sender, RoutedEventArgs e)
         {
             var v = t.getLocations();
@@ -267,20 +240,20 @@ namespace TrackAndTrace
             }
         }
 
-        // Checks a user into a location 
+        // Location Interaction : Checks a user into a location 
         // TODO Think this XAML link is broken
         private void btnCheckInMainWindow_Click(object sender, RoutedEventArgs e)
         {
             t.checkIn(int.Parse(txtBoxUserIDTrack.Text), int.Parse(txtBoxLocationIDTrack.Text), DateTime.Parse(txtBoxDateAndTimeTrack.Text));
         }
 
-        // Checks a user into a location 
+        // Location Interaction : Checks a user into a location 
         private void btnCheckInMainWindow_Click_1(object sender, RoutedEventArgs e)
         {
             t.checkIn(int.Parse(txtBoxUserIDTrack.Text), int.Parse(txtBoxLocationIDTrack.Text), DateTime.Parse(txtBoxDateAndTimeTrack.Text));
         }
 
-        // Shows all of the users that have checked in 
+        // Location Interaction : Shows all of the users that have checked in 
         private void btnShowAllVisits_Click(object sender, RoutedEventArgs e)
         {
             var v = t.getVisits();
@@ -293,6 +266,7 @@ namespace TrackAndTrace
             }
         }
 
+        // Location Interaction :
         private void btnSearchForVisits_Click(object sender, RoutedEventArgs e)
         {
             var visitList = t.getVisits();
@@ -312,11 +286,11 @@ namespace TrackAndTrace
                 // listBoxMainWindow.Items.Add("User ID : - " + q.userID);
                 var result2 = from b in updatedVisitList
                               where b.userID == q.userID
-                              select b;                
+                              select b;
 
                 foreach (Person h in result2.ToList())
 
-                {                    
+                {
                     listBoxMainWindow.Items.Add("Contact User ID : - " + h.userID);
                     listBoxMainWindow.Items.Add("Telephone Number : - " + h.telephoneNumber);
                     listBoxMainWindow.Items.Add("Date of Visit : - " + q.checkInDate);
@@ -326,9 +300,8 @@ namespace TrackAndTrace
             }
         }
 
-        private void txtBoxUserIDTrack_TextChanged(object sender, TextChangedEventArgs e)
-        {
+      
 
-        }
+     
     }
 }
