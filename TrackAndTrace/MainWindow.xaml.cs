@@ -135,8 +135,9 @@ namespace TrackAndTrace
             // done
         }
 
-      
-
-     
+        private void BtnClearListBoxTrack_Click(object sender, RoutedEventArgs e)
+        {
+            listBoxMainWindow.Items.Clear();
+        }
     }
 }
