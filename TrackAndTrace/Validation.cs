@@ -11,16 +11,14 @@ namespace TrackAndTrace
 
         public Track tr = new Track();
         public string lineBreak()
-        {
-           // base.listBoxMainWindow.Items.Add("--------------------------------------");
+        {  
             return "--------------------------------------";
         }
 
+        // This method validate that the phone number meets the criteria and that the User ID is unique, 
+        // if both conditions are met the user is added to the Person class
         public string newPersonValidation(string phoneNumber)
         {
-            // This method validate that the phone number meets the criteria and that the User ID is unique, 
-            // if both conditions are met the user is added to the Person class
-
             // Variables
             var validPeople = tr.getPeople();
             bool isUnique = true;
@@ -28,8 +26,6 @@ namespace TrackAndTrace
             // User ID validation Step 1, if the people list is empty there is no need to check if the User ID entered is unique.
             if (validPeople.Capacity < 1)
             {
-                //string phoneNumber = txtBoxPhoneNumberTrack.Text;
-
                 // Phone Number Validation, must be 11 integer numbers long, and must begin with a 0
                 if (!phoneNumber[0].Equals('0') || phoneNumber.Equals(null) || phoneNumber.Length < 11)
                 {
@@ -38,22 +34,14 @@ namespace TrackAndTrace
                                                 "- Begin With a 0 \n" +
                                                 "- Be 11 numbers long or more \n" +
                                                 "- you entered: - " + phoneNumber + "\n" +
-                                                "- Please Try again";
-
-                    ///* base.listBoxMainWindow.Items.Add*/("Invalid Phone Number entered \n" +
-                    //                             "- Your Phone Number Must: \n" +
-                    //                             "- Begin With a 0 \n" +
-                    //                             "- Be 11 numbers long or more \n" +
-                    //                             "- you entered: - " + phoneNumber + "\n" +
-                    //                             "- Please Try again");
+                                                "- Please Try again";             
                     lineBreak();
                     return message1;
                 }
+
                 // Phone number is valid, user is added to the person list
                 else
-                {
-                    //base.listBoxMainWindow.Items.Add("Capacity = 0 - Phone Number entered is valid - " + phoneNumber);
-                    //base.listBoxMainWindow.Items.Add("User : - " + ID.Instance.currentUserID() + " has been added");
+                { 
                     string message2 = "Empty User : - is valid is : -" + isUnique + "\n" +
                             "User : -" + ID.Instance.currentUserID() + " has been added" + "\n" +
                             "Capacity = 0 - Phone Number entered is valid - " + phoneNumber;
@@ -63,11 +51,10 @@ namespace TrackAndTrace
                     ID.Instance.nextUserID();
                     validPeople = tr.getPeople();
                     return message2;
-                }
-                
+                }                
             }
 
-            // User ID validation Step 2
+            // User ID validation Step 2 - in the case where the Person list is not empty
             else if (validPeople.Capacity > 0)
             {
                 foreach (Person p in validPeople.ToList())
@@ -79,8 +66,7 @@ namespace TrackAndTrace
                     {
                         string message3 = "User ID already exisits, please enter a unique user ID \n" +
                                           "is valid is : -" + isUnique +
-                                          lineBreak() + "\n";          
-                        
+                                          lineBreak() + "\n";         
                         return message3;                       
                     }
                     continue;
@@ -88,9 +74,6 @@ namespace TrackAndTrace
 
                 if (isUnique == true)
                 {
-                    // Holds the text box input in a string variable so that if conditions can be set
-                    //string phoneNumber = txtBoxPhoneNumberTrack.Text;
-
                     // Phone Number Validation, must be 11 integer numbers long, and must begin with a 0
                     if (!phoneNumber[0].Equals('0') || phoneNumber.Equals(null) || phoneNumber.Length < 11)
                     {
@@ -123,6 +106,7 @@ namespace TrackAndTrace
             return "";
         }
 
+        // TODO : Add a comment
         public string recordContactDateValidation(string userID, string contactUserID, string dateTime)
         {
             DateTime date;
