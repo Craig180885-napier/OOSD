@@ -104,6 +104,7 @@ namespace TrackAndTrace
                 
             }
             return "";
+            // End of newPersonValidation method
         }
 
         // TODO : Add a comment
@@ -112,8 +113,7 @@ namespace TrackAndTrace
             DateTime date;
             if (DateTime.TryParse(dateTime, out date) == false)
             {
-                string recordContactErrorMessage = "Date cannot be empty : - ";
-                lineBreak();
+                string recordContactErrorMessage = "Date cannot be empty : - " + lineBreak() + "\n";
                 return recordContactErrorMessage;
             }
             else

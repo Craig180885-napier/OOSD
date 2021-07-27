@@ -49,7 +49,7 @@ namespace TrackAndTrace
         // Person Interaction : Displays every person in the people list in the Main Window List Box
         private void btnDisplayAllPeople_Click(object sender, RoutedEventArgs e)
         {
-            listBoxMainWindow.Items.Add(q.displayAllPeopleQuery());
+            listBoxMainWindow.Items.Add(q.getAllPeopleQuery());
             // done
         }
 
@@ -76,7 +76,7 @@ namespace TrackAndTrace
         // Person Interaction :
         private void btnShowAllContacts_Click(object sender, RoutedEventArgs e)
         {
-
+            listBoxMainWindow.Items.Add(q.getAllContactsQuery());
         }
 
         // Person Interaction :
@@ -131,7 +131,7 @@ namespace TrackAndTrace
         // Location Interaction :
         private void btnSearchForVisits_Click(object sender, RoutedEventArgs e)
         {
-            listBoxMainWindow.Items.Add(q.searchForVisits(txtBoxStartDateTrace.Text, txtBoxEndDateTrace.Text, txtBoxVisitedLocationTrace.Text));
+            listBoxMainWindow.Items.Add(q.searchForVisitsQuery(txtBoxStartDateTrace.Text, txtBoxEndDateTrace.Text, txtBoxVisitedLocationTrace.Text));
             // done
         }
 
