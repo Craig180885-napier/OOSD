@@ -77,15 +77,10 @@ namespace TrackAndTrace
                     if (p.userID == ID.Instance.currentUserID())
                     /*if (p.userID == int.Parse(txtBoxUserIDTrack.Text))*/  // for demo purposes to demonstrate validation of Unique user ID
                     {
-                        //base.listBoxMainWindow.Items.Add("User ID already exisits, please enter a unique user ID \n");
-                        //isUnique = false;
-                        //base.listBoxMainWindow.Items.Add("is valid is : -" + isUnique);
-
-
                         string message3 = "User ID already exisits, please enter a unique user ID \n" +
-                            "is valid is : -" + isUnique;                   
-
-                        lineBreak();
+                                          "is valid is : -" + isUnique +
+                                          lineBreak() + "\n";          
+                        
                         return message3;                       
                     }
                     continue;
@@ -99,38 +94,27 @@ namespace TrackAndTrace
                     // Phone Number Validation, must be 11 integer numbers long, and must begin with a 0
                     if (!phoneNumber[0].Equals('0') || phoneNumber.Equals(null) || phoneNumber.Length < 11)
                     {
-                        //base.listBoxMainWindow.Items.Add("Invalid Phone Number entered \n" +
-                        //                            "- Your Phone Number Must: \n" +
-                        //                            "- Begin With a 0 \n" +
-                        //                            "- Be 11 numbers long or more \n" +
-                        //                            "- you entered: - " + phoneNumber + "\n" +
-                        //                            "- Please Try again");
-
                         string message4 = "Invalid Phone Number entered \n" +
                                                     "- Your Phone Number Must: \n" +
                                                     "- Begin With a 0 \n" +
                                                     "- Be 11 numbers long or more \n" +
                                                     "- you entered: - " + phoneNumber + "\n" +
-                                                    "- Please Try again";
-                        lineBreak();
+                                                    "- Please Try again" +
+                                                     lineBreak() + "\n";                        
                         return message4;
                     }
                   
                     // If the phone number meets the criteria and the user ID is unique adds this user to the Person list
                     else
                     {
-                        //base.listBoxMainWindow.Items.Add("is valid is : -" + isUnique);
-                        //base.listBoxMainWindow.Items.Add("User : - " + ID.Instance.currentUserID() + " has been added");
-                        //base.listBoxMainWindow.Items.Add("Capacity > 0 - Phone Number entered is valid - " + phoneNumber);
-
                         string message5 = "is valid is : -" + isUnique + "\n" +
-                            "User : -" + ID.Instance.currentUserID() + " has been added" + "\n" +
-                            "Capacity > 0 - Phone Number entered is valid - " + phoneNumber;
+                                          "User : -" + ID.Instance.currentUserID() + " has been added" + "\n" +
+                                          "Capacity > 0 - Phone Number entered is valid - " + phoneNumber + "\n" +
+                                          lineBreak() + "\n";
 
                         tr.addPerson(ID.Instance.currentUserID(), phoneNumber);
                         ID.Instance.nextUserID();
                         return message5;
-
                     }
                    
                 }
@@ -145,13 +129,14 @@ namespace TrackAndTrace
             if (DateTime.TryParse(dateTime, out date) == false)
             {
                 string recordContactErrorMessage = "Date cannot be empty : - ";
-                //base.listBoxMainWindow.Items.Add("Date cannot be empty : - ");
                 lineBreak();
                 return recordContactErrorMessage;
             }
             else
             {
-                string recordSuccessMessage = "Contact recoded between User : " + userID + " and User " + contactUserID + " at : " + DateTime.Parse(dateTime);
+                string recordSuccessMessage = "Contact recoded between User : " + userID + " and User " + 
+                                               contactUserID + " at : " + DateTime.Parse(dateTime) + "\n" + 
+                                               lineBreak() + "\n";
                 tr.addContact(int.Parse(userID), int.Parse(contactUserID), DateTime.Parse(dateTime));
                 return recordSuccessMessage;
             }
@@ -163,11 +148,8 @@ namespace TrackAndTrace
             tr.addLocation(ID.Instance.currentLocationID(), address);
 
             string addlocationValidationSuccessMessage = "Location ID : - " + ID.Instance.currentLocationID() + " Has been added \n" +
-                                                            "Address: - " + address;
-
-            //base.listBoxMainWindow.Items.Add("Location ID : - " + ID.Instance.currentLocationID() + " Has been added");
-            //base.listBoxMainWindow.Items.Add("Address: - " + address);
-            lineBreak();
+                                                         "Address: - " + address + "\n" +
+                                                          lineBreak() + "\n";
             ID.Instance.nextLocationID();
             return addlocationValidationSuccessMessage;
         }
@@ -178,7 +160,7 @@ namespace TrackAndTrace
             string checkInSuccessMessage = "User :" + UserID + " has been checked into \n" +
                                            "location ID : " + locationID + "\n" + 
                                            "at : " + DateTime.Parse(dateTime) + "\n" +
-                                           lineBreak() + "\n";
+                                            lineBreak() + "\n";
             tr.checkIn(int.Parse(UserID), int.Parse(locationID), DateTime.Parse(dateTime));
             return checkInSuccessMessage;
         }

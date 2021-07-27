@@ -166,10 +166,10 @@ namespace TrackAndTrace
                                                     searchForVisitsSuccessMessage2 + h.telephoneNumber + "\n" +
                                                     searchForVisitsSuccessMessage3 + q.checkInDate + "\n" +
                                                     lineBreak() + "\n";
-
-
                 }
+
             }
+
             return listOfVisits + "\n" + searchForVisitsSuccessMessage;
         }
        
