@@ -119,14 +119,6 @@ namespace TrackAndTrace
                                          searchForContactsSuccessMessage3 + h.telephoneNumber + "\n" +
                                          searchForContactsSuccessMessage4 + q.contactDate + "\n" +
                                          lineBreak() + "\n"; 
-
-
-                    //base.listBoxMainWindow.Items.Add("List of contacts for User: - " + q.userID);
-                    //base.listBoxMainWindow.Items.Add("Contact User ID : - " + q.contactUserID);
-                    //base.listBoxMainWindow.Items.Add("Telephone Number : - " + h.telephoneNumber);
-                    //base.listBoxMainWindow.Items.Add("Date of Contact : - " + q.contactDate);
-                    //base.lineBreak();
-                    
                 }
             }
             return searchForContactsSuccessMessage;
