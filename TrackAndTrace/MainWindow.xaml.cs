@@ -20,315 +20,124 @@ namespace TrackAndTrace
     /// </summary>
     public partial class MainWindow : Window
     {
-        Track t = new Track();
+        //Track t = new Track();
+        //Validation v = new Validation();
+        QueryClass q = new QueryClass();
         public MainWindow()
         {
             InitializeComponent();
             ID.Instance.nextUserID();
             ID.Instance.nextLocationID();
-
         }
-
-        private void lineBreak()
-        {
-            listBoxMainWindow.Items.Add("--------------------------------------");
-        }
+            
 
         /*
          * Person interactions
          */
 
-        // Button click adds a Person with the details in the corrosponding text boxes
+        // Person Interaction : Button click adds a Person with the details in the corrosponding text boxes
         private void btnAddPerson_Click(object sender, RoutedEventArgs e)
         {
-            newPersonValidation();
-        }      
-
-        // Helper method for the btnAddPerson_Click event handler
-        private void newPersonValidation()
-        {
-            // This method validate that the phone number meets the criteria and that the User ID is unique, 
-            // if both conditions are met the user is added to the Person class
-
-            // Variables
-            var validPeople = t.getPeople();
-            bool isUnique = true;
-
-            // User ID validation Step 1, if the people list is empty there is no need to check if the User ID entered is unique.
-            if (validPeople.Capacity < 1)
-            {
-                string phoneNumber = txtBoxPhoneNumberTrack.Text;
-
-                // Phone Number Validation, must be 11 integer numbers long, and must begin with a 0
-                if (!phoneNumber[0].Equals('0') || phoneNumber.Equals(null) || phoneNumber.Length < 11)
-                {
-                    listBoxMainWindow.Items.Add("Invalid Phone Number entered \n" +
-                                                "- Your Phone Number Must: \n" +
-                                                "- Begin With a 0 \n" +
-                                                "- Be 11 numbers long or more \n" +
-                                                "- you entered: - " + txtBoxPhoneNumberTrack.Text + "\n" +
-                                                "- Please Try again");
-                    lineBreak();
-                    
-                }
-                // Phone number is valid, user is added to the person list
-                else
-                {
-                    listBoxMainWindow.Items.Add("Capacity = 0 - Phone Number entered is valid - " + txtBoxPhoneNumberTrack.Text);
-                    listBoxMainWindow.Items.Add("User : - " + ID.Instance.currentUserID() + " has been added");
-                    lineBreak();
-                    t.addPerson(ID.Instance.currentUserID(), txtBoxPhoneNumberTrack.Text);
-                    ID.Instance.nextUserID();
-                    validPeople = t.getPeople();
-                }
-            }
-
-            // User ID validation Step 2
-            else if (validPeople.Capacity > 0)
-            {
-                foreach (Person p in validPeople.ToList())
-                {
-                    // If the user ID is not unique then present an error and do not add the person to the list
-                    // sets the bool isUnique to false 
-                    if (p.userID == ID.Instance.currentUserID())
-                    {
-                        listBoxMainWindow.Items.Add("User ID already exisits, please enter a unique user ID \n");
-                        lineBreak();
-                        isUnique = false;
-                        listBoxMainWindow.Items.Add("is valid is : -" + isUnique);
-                        break;
-                    }
-                }
-                              
-                if (isUnique == true)
-                {
-                    // Holds the text box input in a string variable so that if conditions can be set
-                    string phoneNumber = txtBoxPhoneNumberTrack.Text;
-
-                    // Phone Number Validation, must be 11 integer numbers long, and must begin with a 0
-                    if (!phoneNumber[0].Equals('0') || phoneNumber.Equals(null) || phoneNumber.Length < 11)
-                    {
-                        listBoxMainWindow.Items.Add("Invalid Phone Number entered \n" +
-                                                    "- Your Phone Number Must: \n" +
-                                                    "- Begin With a 0 \n" +
-                                                    "- Be 11 numbers long or more \n" +
-                                                    "- you entered: - " + txtBoxPhoneNumberTrack.Text + "\n" +
-                                                    "- Please Try again");
-                        lineBreak();
-                    }
-
-                    // If the phone number meets the criteria and the user ID is unique adds this user to the Person list
-                    else
-                    {
-                        listBoxMainWindow.Items.Add("is valid is : -" + isUnique);
-                        listBoxMainWindow.Items.Add("User : - " + ID.Instance.currentUserID() + " has been added");
-                        listBoxMainWindow.Items.Add("Capacity > 0 - Phone Number entered is valid - " + txtBoxPhoneNumberTrack.Text);
-                        listBoxMainWindow.Items.Add("---------------------------------------------");
-
-                        t.addPerson(ID.Instance.currentUserID(), txtBoxPhoneNumberTrack.Text);
-                        ID.Instance.nextUserID();
-                        //ID.Instance.nextUserID();
-                        //txtBoxIDMain.Text = ID.Instance.nextUserID().ToString();
-                    }
-                }
-            }
-
-            // User ID validation Step 2
-            else if (validPeople.Capacity > 0)
-            {
-                foreach (Person p in validPeople.ToList())
-                {
-                    // If the user ID is not unique then present an error and do not add the person to the lis
-                    if (p.userID == ID.Instance.currentUserID())
-                    {
-                        listBoxMainWindow.Items.Add("User ID already exisits, please enter a unique user ID \n");
-                        lineBreak();
-
-                        break;
-                    }
-                    
-                    // If the User ID entered does not exist in the list then proceed to Phone Number validation 
-                    else 
-                    {
-                        string phoneNumber = txtBoxPhoneNumberTrack.Text;
-
-                        // Phone Number Validation, must be 11 integer numbers long, and must begin with a 0
-                        if (!phoneNumber[0].Equals('0') || phoneNumber.Equals(null) || phoneNumber.Length < 11)
-                        {
-                            listBoxMainWindow.Items.Add("Invalid Phone Number entered \n" +
-                                                        "- Your Phone Number Must: \n" +
-                                                        "- Begin With a 0 \n" +
-                                                        "- Be 11 numbers long or more \n" +
-                                                        "- you entered: - " + txtBoxPhoneNumberTrack.Text + "\n" +
-                                                        "- Please Try again");
-                            lineBreak();
-                        }
-
-                        // If the phone number meets the criteria 
-                        else
-                        {
-                            listBoxMainWindow.Items.Add("Capacity > 0 - Phone Number entered is valid - " + txtBoxPhoneNumberTrack.Text);
-                            lineBreak();
-                            t.addPerson(ID.Instance.currentUserID(), txtBoxPhoneNumberTrack.Text);
-                            ID.Instance.nextUserID();       
-                        }
-                    }
-                }
-            }
+           // q.newPersonValidation(txtBoxPhoneNumberTrack.Text);
+            listBoxMainWindow.Items.Add(q.newPersonValidation(txtBoxPhoneNumberTrack.Text));
+            // done
         }
 
-        // Displays every person in the people list in the Main Window List Box
+        // Person Interaction : Helper method for the btnAddPerson_Click event handler
+   
+
+        // Person Interaction : Displays every person in the people list in the Main Window List Box
         private void btnDisplayAllPeople_Click(object sender, RoutedEventArgs e)
         {
-            var v = t.getPeople();
-            foreach (Person f in v)
-            {
-                listBoxMainWindow.Items.Add("User ID : - " + f.userID);
-                listBoxMainWindow.Items.Add("Telephone number : - " + f.telephoneNumber);
-                lineBreak();
-            }
+            listBoxMainWindow.Items.Add(q.getAllPeopleQuery());
+            // done
         }
 
+        // Person Interaction :
+        private void BtnLoadUsers_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        // Person Interaction : Saves the contents of the person list to the CSV file.  Users are appended not overwritten.
+        private void BtnSaveUsersTrack_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        // Person Interaction :
         private void btnRecordContact_Click(object sender, RoutedEventArgs e)
         {
-            DateTime date;                  
-            if (DateTime.TryParse(txtBoxDateAndTimeTrack.Text, out date) == false)
-            { 
-                listBoxMainWindow.Items.Add("Date cannot be empty : - ");
-                lineBreak();
-            }
-            else
-            {
-                t.addContact(int.Parse(txtBoxUserIDTrack.Text), int.Parse(txtBoxContactUserIDTrack.Text), DateTime.Parse(txtBoxDateAndTimeTrack.Text));
-            }
+            // Validates that the date entered is parsable and adds the contact if so
+            listBoxMainWindow.Items.Add(q.recordContactDateValidation(txtBoxUserIDTrack.Text, txtBoxContactUserIDTrack.Text, txtBoxDateAndTimeTrack.Text));
+            // done
         }
 
+        // Person Interaction :
         private void btnShowAllContacts_Click(object sender, RoutedEventArgs e)
         {
-           
+            listBoxMainWindow.Items.Add(q.getAllContactsQuery());
         }
 
+        // Person Interaction :
+        // TODO wrap the body of this method in its own method and call
         private void btnSearchForContactsMainWindow_Click(object sender, RoutedEventArgs e)
         {
-            var contactList = t.getContacts();
-            var result = from v in contactList
-                         where v.contactDate > DateTime.Parse(txtBoxStartDateTrace.Text)
-                         where v.userID == int.Parse(txtBoxContactUserIDTrace.Text)
-                         select v;
-
-            var updatedContactList = t.getPeople();
-
-
-
-            foreach (Person q in result.ToList())
-            {
-                // listBoxMainWindow.Items.Add("User ID : - " + q.userID);
-                var result2 = from b in updatedContactList
-                              where b.userID == q.contactUserID
-                              select b;
-
-                foreach (Person h in result2.ToList())
-                {
-                    listBoxMainWindow.Items.Add("List of contacts for User: - " + q.userID);
-                    listBoxMainWindow.Items.Add("Contact User ID : - " + q.contactUserID);
-                    listBoxMainWindow.Items.Add("Telephone Number : - " + h.telephoneNumber);
-                    listBoxMainWindow.Items.Add("Date of Contact : - " + q.contactDate);
-                    lineBreak();
-                }
-            }
+            listBoxMainWindow.Items.Add(q.searchForContactsQuery(txtBoxStartDateTrace.Text, txtBoxContactUserIDTrace.Text));
+            // done
         }
 
         /*
          * Location Interactions
          */
 
-        // button click adds a location with the deatils in the corrosponding text boxes
+        // Location Interaction : Button click adds a location with the deatils in the corrosponding text boxes
         private void btnAddLocation_Click(object sender, RoutedEventArgs e)
         {
-            //string esd = ;
-            //int w = int.Parse(esd);
-            t.addLocation(ID.Instance.currentLocationID(), txtBoxAddressTrack.Text);
-            listBoxMainWindow.Items.Add("Location ID : - " + ID.Instance.currentLocationID() + " Has been added");
-            listBoxMainWindow.Items.Add("Address: - " + txtBoxAddressTrack.Text);
-            lineBreak();
-            ID.Instance.nextLocationID();
+            listBoxMainWindow.Items.Add(q.addLocationValidation(txtBoxAddressTrack.Text));   
+            // done
         }
 
-        // Shows all of the locations that have been created
+        // Location Interaction : Shows all of the locations that have been created
         private void btnDisplayLocations_Click(object sender, RoutedEventArgs e)
         {
-            var v = t.getLocations();
-
-            foreach (Location r in v)
-            {
-                listBoxMainWindow.Items.Add("Location ID : - " + r.locationID);
-                listBoxMainWindow.Items.Add("Address: - " + r.address);
-                lineBreak();
-            }
+            listBoxMainWindow.Items.Add(q.getAllLocationsQuery());
+            // done
         }
 
-        // Checks a user into a location 
+        // Location Interaction : Checks a user into a location 
         // TODO Think this XAML link is broken
         private void btnCheckInMainWindow_Click(object sender, RoutedEventArgs e)
         {
-            t.checkIn(int.Parse(txtBoxUserIDTrack.Text), int.Parse(txtBoxLocationIDTrack.Text), DateTime.Parse(txtBoxDateAndTimeTrack.Text));
+            listBoxMainWindow.Items.Add(q.checkIn(txtBoxUserIDTrack.Text, txtBoxLocationIDTrack.Text, txtBoxDateAndTimeTrack.Text));
+            // not done
         }
 
-        // Checks a user into a location 
+        // TODO: check which one of these event handlers is the correct one and get rid of the other
+        // Location Interaction : Checks a user into a location 
         private void btnCheckInMainWindow_Click_1(object sender, RoutedEventArgs e)
         {
-            t.checkIn(int.Parse(txtBoxUserIDTrack.Text), int.Parse(txtBoxLocationIDTrack.Text), DateTime.Parse(txtBoxDateAndTimeTrack.Text));
+            listBoxMainWindow.Items.Add(q.checkIn(txtBoxUserIDTrack.Text, txtBoxLocationIDTrack.Text, txtBoxDateAndTimeTrack.Text));
+            // done
         }
 
-        // Shows all of the users that have checked in 
+        // Location Interaction : Shows all of the users that have checked in 
         private void btnShowAllVisits_Click(object sender, RoutedEventArgs e)
         {
-            var v = t.getVisits();
-            foreach (Location f in v)
-            {
-                listBoxMainWindow.Items.Add("User ID : - " + f.userID);
-                listBoxMainWindow.Items.Add("Location ID : - " + f.locationID);
-                listBoxMainWindow.Items.Add("Check In Date : - " + f.checkInDate);
-                lineBreak();
-            }
+            listBoxMainWindow.Items.Add(q.getAllVisitsQuery());
+            // done
         }
 
+        // Location Interaction :
         private void btnSearchForVisits_Click(object sender, RoutedEventArgs e)
         {
-            var visitList = t.getVisits();
-            var result = from v in visitList
-                         where v.checkInDate >= DateTime.Parse(txtBoxStartDateTrace.Text)
-                         where v.checkInDate <= DateTime.Parse(txtBoxEndDateTrace.Text)
-                         where v.locationID == int.Parse(txtBoxVisitedLocationTrace.Text)
-                         select v;
-
-            var updatedVisitList = t.getPeople();
-
-            listBoxMainWindow.Items.Add("List of Visits for Location ID: - " + txtBoxVisitedLocationTrace.Text);
-            lineBreak();
-
-            foreach (Location q in result.ToList())
-            {
-                // listBoxMainWindow.Items.Add("User ID : - " + q.userID);
-                var result2 = from b in updatedVisitList
-                              where b.userID == q.userID
-                              select b;                
-
-                foreach (Person h in result2.ToList())
-
-                {                    
-                    listBoxMainWindow.Items.Add("Contact User ID : - " + h.userID);
-                    listBoxMainWindow.Items.Add("Telephone Number : - " + h.telephoneNumber);
-                    listBoxMainWindow.Items.Add("Date of Visit : - " + q.checkInDate);
-                    lineBreak();
-
-                }
-            }
+            listBoxMainWindow.Items.Add(q.searchForVisitsQuery(txtBoxStartDateTrace.Text, txtBoxEndDateTrace.Text, txtBoxVisitedLocationTrace.Text));
+            // done
         }
 
-        private void txtBoxUserIDTrack_TextChanged(object sender, TextChangedEventArgs e)
+        private void BtnClearListBoxTrack_Click(object sender, RoutedEventArgs e)
         {
-
+            listBoxMainWindow.Items.Clear();
         }
     }
 }
