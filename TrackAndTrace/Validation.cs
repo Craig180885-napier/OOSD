@@ -17,7 +17,7 @@ namespace TrackAndTrace
 
         // This method validate that the phone number meets the criteria and that the User ID is unique, 
         // if both conditions are met the user is added to the Person class
-        public string newPersonValidation(string phoneNumber)
+        public string newPersonValidation(int UserID, string phoneNumber)
         {
             // Variables
             var validPeople = tr.getPeople();
@@ -42,34 +42,49 @@ namespace TrackAndTrace
                 // Phone number is valid, user is added to the person list
                 else
                 { 
-                    string message2 = "Empty User : - is valid is : -" + isUnique + "\n" +
+                    string message2 = "Empty Person List: - is valid is : -" + isUnique + "\n" +
                             "User : -" + ID.Instance.currentUserID() + " has been added" + "\n" +
-                            "Capacity = 0 - Phone Number entered is valid - " + phoneNumber;
+                            "Capacity = 0 - Phone Number entered is valid - " + phoneNumber + "\n" +
+                            lineBreak(); 
 
-                    lineBreak();
-                    tr.addPerson(ID.Instance.currentUserID(), phoneNumber);
-                    ID.Instance.nextUserID();
-                    validPeople = tr.getPeople();
-                    return message2;
+                    
+
+                    if (UserID == 0)
+                    {
+                        tr.addPerson(ID.Instance.currentUserID(), phoneNumber);
+                        ID.Instance.nextUserID();
+                        return message2;
+                    }
+
+                    else
+                    {
+                        tr.addPerson(UserID, phoneNumber);
+                        ID.Instance.nextUserID();
+                        return message2;
+                    }
+             
                 }                
             }
 
             // User ID validation Step 2 - in the case where the Person list is not empty
             else if (validPeople.Capacity > 0)
             {
+                string message3 = "";
                 foreach (Person p in validPeople.ToList())
                 {
                     // If the user ID is not unique then present an error and do not add the person to the list
                     // sets the bool isUnique to false 
-                    if (p.userID == ID.Instance.currentUserID())
+                    if (p.userID == UserID)
                     /*if (p.userID == int.Parse(txtBoxUserIDTrack.Text))*/  // for demo purposes to demonstrate validation of Unique user ID
                     {
-                        string message3 = "User ID already exisits, please enter a unique user ID \n" +
-                                          "is valid is : -" + isUnique +
-                                          lineBreak() + "\n";         
-                        return message3;                       
-                    }
+                         message3 = "User ID : " + p.userID + " already exisits, please enter a unique user ID \n" +
+                                         "is valid is : -" + isUnique +
+                                         lineBreak() + "\n";
+                        //ID.Instance.nextUserID();
+                        return message3;
+                    }                    
                     continue;
+                    
                 }
 
                 if (isUnique == true)
@@ -94,10 +109,20 @@ namespace TrackAndTrace
                                           "User : -" + ID.Instance.currentUserID() + " has been added" + "\n" +
                                           "Capacity > 0 - Phone Number entered is valid - " + phoneNumber + "\n" +
                                           lineBreak() + "\n";
+                        if (UserID == 0)
+                        {
+                            tr.addPerson(ID.Instance.currentUserID(), phoneNumber);
+                            ID.Instance.nextUserID();
+                            return message5;
+                        }
 
-                        tr.addPerson(ID.Instance.currentUserID(), phoneNumber);
-                        ID.Instance.nextUserID();
-                        return message5;
+                        else
+                        {
+                            tr.addPerson(UserID, phoneNumber);
+                            ID.Instance.nextUserID();
+                            return message5;
+                        }
+                       
                     }
                    
                 }

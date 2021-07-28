@@ -20,26 +20,43 @@ namespace TrackAndTrace
     /// </summary>
     public partial class MainWindow : Window
     {
+        string path = "C:\\Users\\Craig\\Documents\\University\\OOSD\\Coursework.\\TrackAndTrace.csv";
         //Track t = new Track();
         //Validation v = new Validation();
         QueryClass q = new QueryClass();
+        Data d = new Data();
+
+
         public MainWindow()
         {
             InitializeComponent();
             ID.Instance.nextUserID();
             ID.Instance.nextLocationID();
+            loadUsersFromFile();
+            loadLocationsFromFile();
         }
-            
+        public void loadLocationsFromFile()
+        {
+
+        }
 
         /*
          * Person interactions
          */
 
+        // Person Interaction : Loads the users from the Csv file and adds them to the appropriate List
+        private void loadUsersFromFile()
+        {
+            foreach (Person p in d.displayAllPeopleFromFile(path).ToList())
+            {
+                listBoxMainWindow.Items.Add(q.newPersonValidation(p.userID, p.telephoneNumber));
+            }
+        }
         // Person Interaction : Button click adds a Person with the details in the corrosponding text boxes
         private void btnAddPerson_Click(object sender, RoutedEventArgs e)
         {
            // q.newPersonValidation(txtBoxPhoneNumberTrack.Text);
-            listBoxMainWindow.Items.Add(q.newPersonValidation(txtBoxPhoneNumberTrack.Text));
+            listBoxMainWindow.Items.Add(q.newPersonValidation(0, txtBoxPhoneNumberTrack.Text));
             // done
         }
 
@@ -56,7 +73,11 @@ namespace TrackAndTrace
         // Person Interaction :
         private void BtnLoadUsers_Click(object sender, RoutedEventArgs e)
         {
-
+            listBoxMainWindow.Items.Add(d.displayAllPeopleFromFile(path));
+            foreach (Person p in d.displayAllPeopleFromFile(path).ToList())
+            {
+                listBoxMainWindow.Items.Add(q.newPersonValidation(p.userID,p.telephoneNumber));
+            }
         }
 
         // Person Interaction : Saves the contents of the person list to the CSV file.  Users are appended not overwritten.

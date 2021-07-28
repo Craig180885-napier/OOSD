@@ -9,6 +9,8 @@ namespace TrackAndTrace
     class QueryClass : Validation
     {
 
+        Data d = new Data();
+
         // Display all methods 
 
         // TODO : Add comment
@@ -28,6 +30,27 @@ namespace TrackAndTrace
             }
             return displayAllLocationsSuccessMessage;
         }
+
+        //public string getAllPeopleFromFileQuery()
+        //{
+        //    string getAllPeopleFromFileSuccess;
+
+        //    string displayAllPeopleSuccessMessage1 = "User ID : - ";
+        //    string displayAllPeopleSuccessMessage2 = "Telephone number : - ";
+        //    var v = d.displayAllFromFile();
+
+        //    foreach (Person f in v)
+        //    {
+        //        lineBreak();
+        //        displayAllPeopleSuccessMessage = displayAllPeopleSuccessMessage +
+        //                                         displayAllPeopleSuccessMessage1 + f.userID + "\n" +
+        //                                         displayAllPeopleSuccessMessage2 + f.telephoneNumber + "\n" +
+        //                                         lineBreak() + "\n";
+        //    }
+        //    return displayAllPeopleSuccessMessage;
+        //    return getAllPeopleFromFileSuccess;
+        //}
+
 
         // TODO : Add comment
         public string getAllPeopleQuery()
