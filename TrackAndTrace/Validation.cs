@@ -121,12 +121,9 @@ namespace TrackAndTrace
                             tr.addPerson(UserID, phoneNumber);
                             ID.Instance.nextUserID();
                             return message5;
-                        }
-                       
-                    }
-                   
-                }
-                
+                        }                       
+                    }                   
+                }                
             }
             return "";
             // End of newPersonValidation method
@@ -135,11 +132,28 @@ namespace TrackAndTrace
         // TODO : Add a comment
         public string recordContactDateValidation(string userID, string contactUserID, string dateTime)
         {
+            
+            int lastUserID = tr.getPeople().ToList().Capacity;
+            int firstUserID = lastUserID - (lastUserID - 1);
+
             DateTime date;
-            if (DateTime.TryParse(dateTime, out date) == false)
+            int s;
+
+            if (int.TryParse(userID, out s) == false || int.TryParse(contactUserID, out s) == false || 
+                int.Parse(userID) > lastUserID || int.Parse(contactUserID) > lastUserID ||
+                int.Parse(userID) < 1 || int.Parse(contactUserID) < 1)
             {
-                string recordContactErrorMessage = "Date cannot be empty : - " + lineBreak() + "\n";
-                return recordContactErrorMessage;
+                string recordContactErrorMessage1 = "there was an issue with the User ID or the Contact User ID you have entered \n" +
+                                                           "Vaild User IDs range from " + firstUserID + " - " + lastUserID + "\n";
+                                                           
+                                                           return recordContactErrorMessage1;
+            }
+
+           
+            else if (DateTime.TryParse(dateTime, out date) == false)
+            {
+                string recordContactErrorMessage2 = "Date cannot be empty : - " + lineBreak() + "\n";
+                return recordContactErrorMessage2;
             }
             else
             {
@@ -152,15 +166,29 @@ namespace TrackAndTrace
         }
 
         // TODO : Add validation for location ID, address
-        public string addLocationValidation(string address)
+        public string addLocationValidation(int LocationID, string address)
         {
-            tr.addLocation(ID.Instance.currentLocationID(), address);
+            if(LocationID == 0 )
+            {
+                tr.addLocation(ID.Instance.currentLocationID(), address);
 
-            string addlocationValidationSuccessMessage = "Location ID : - " + ID.Instance.currentLocationID() + " Has been added \n" +
-                                                         "Address: - " + address + "\n" +
-                                                          lineBreak() + "\n";
-            ID.Instance.nextLocationID();
-            return addlocationValidationSuccessMessage;
+                string addlocationValidationSuccessMessage = "Location ID : - " + ID.Instance.currentLocationID() + " Has been added \n" +
+                                                             "Address: - " + address + "\n" +
+                                                              lineBreak() + "\n";
+                ID.Instance.nextLocationID();
+                return addlocationValidationSuccessMessage;
+            }
+
+            else
+            {
+                tr.addLocation(LocationID, address);
+
+                string addlocationValidationSuccessMessage = "Location ID : - " + LocationID + " Has been added \n" +
+                                                             "Address: - " + address + "\n" +
+                                                              lineBreak() + "\n";
+                ID.Instance.nextLocationID();
+                return addlocationValidationSuccessMessage;
+            }
         }
 
         // TODO : Add validation for User ID, location ID and Date that ensures the strings can be parsed

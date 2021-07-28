@@ -43,8 +43,8 @@
         <TextBox x:Name="txtBoxLocationIDTrack" HorizontalAlignment="Left" Height="22" Margin="229,289,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label Content="Check in Location ID" HorizontalAlignment="Left" Margin="228,263,0,0" VerticalAlignment="Top" Width="165" Height="26"/>
         <ListBox x:Name="listBoxMainWindow" HorizontalAlignment="Left" Height="435" Margin="384,71,0,0" VerticalAlignment="Top" Width="365"/>
-        <Button x:Name="btnDisplayAllPeople" Content="Display People" HorizontalAlignment="Left" Margin="39,487,0,0" VerticalAlignment="Top" Width="114" Click="btnDisplayAllPeople_Click" Height="19"/>
-        <Button x:Name="btnDisplayLocations" Content="Display Locations" HorizontalAlignment="Left" Margin="230,487,0,0" VerticalAlignment="Top" Width="115" Click="btnDisplayLocations_Click" Height="19" />
+        <Button x:Name="btnDisplayAllPeople" Content="Display People" HorizontalAlignment="Left" Margin="34,451,0,0" VerticalAlignment="Top" Width="119" Click="btnDisplayAllPeople_Click" Height="19"/>
+        <Button x:Name="btnDisplayLocations" Content="Display Locations" HorizontalAlignment="Left" Margin="228,451,0,0" VerticalAlignment="Top" Width="115" Click="btnDisplayLocations_Click" Height="19" />
         <TextBox x:Name="txtBoxStartDateTrace" HorizontalAlignment="Left" Height="23" Margin="788,179,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="dd/mm/yyyy hh:mm" Grid.ColumnSpan="2"/>
         <TextBox x:Name="txtBoxEndDateTrace" HorizontalAlignment="Left" Height="24" Margin="62.2,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="dd/mm/yyyy hh:mm" Grid.Column="1"/>
         <Label Content="Start Date" HorizontalAlignment="Left" Margin="788,157,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.391,0.477" Width="145" Grid.ColumnSpan="2" Height="26"/>
@@ -66,6 +66,9 @@
         <Button x:Name="btnSaveUsersTrack" Content="Save Users" HorizontalAlignment="Left" Margin="34,400,0,0" VerticalAlignment="Top" Width="119" Click="BtnSaveUsersTrack_Click"/>
         <Button x:Name="btnLoadUsers" Content="Load Users" HorizontalAlignment="Left" Margin="228,400,0,0" VerticalAlignment="Top" Width="115" Click="BtnLoadUsers_Click" />
         <Button x:Name="btnClearListBoxTrack" Content="Clear List Box" HorizontalAlignment="Left" Margin="488,554,0,0" VerticalAlignment="Top" Width="147" Click="BtnClearListBoxTrack_Click"/>
+        <Button x:Name="btnLoadLocationsTrack" Content="Load Locations" HorizontalAlignment="Left" Margin="228,501,0,0" VerticalAlignment="Top" Width="115"/>
+        <Button x:Name="btnSaveLocationsTrack" Content="Save Locations" HorizontalAlignment="Left" Margin="34,501,0,0" VerticalAlignment="Top" Width="118" Click="BtnSaveLocationsTrack_Click"/>
+        <Button x:Name="btnSaveAllContactsTrace" Content="Save Contacts" HorizontalAlignment="Left" Margin="788,539,0,0" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2" />
 
     </Grid>
 </Window>

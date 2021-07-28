@@ -9,7 +9,7 @@ namespace TrackAndTrace
     class QueryClass : Validation
     {
 
-        Data d = new Data();
+        LoadData d = new LoadData();
 
         // Display all methods 
 
@@ -53,6 +53,15 @@ namespace TrackAndTrace
 
 
         // TODO : Add comment
+        public List<Person> returnAllPeopleList()
+        {                      
+            return tr.getPeople();
+        }
+
+        public List<Location> returnAllLocationsList()
+        {
+            return tr.getLocations();
+        }
         public string getAllPeopleQuery()
         {
             string displayAllPeopleSuccessMessage = "";

@@ -74,8 +74,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Data.cs" />
+    <Compile Include="LoadData.cs" />
     <Compile Include="QueryClass.cs" />
+    <Compile Include="SaveData.cs" />
     <Compile Include="Track.cs" />
     <Compile Include="Validation.cs" />
     <Page Include="MainWindow.xaml">

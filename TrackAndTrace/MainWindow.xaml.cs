@@ -20,11 +20,12 @@ namespace TrackAndTrace
     /// </summary>
     public partial class MainWindow : Window
     {
-        string path = "C:\\Users\\Craig\\Documents\\University\\OOSD\\Coursework.\\TrackAndTrace.csv";
+        
         //Track t = new Track();
         //Validation v = new Validation();
         QueryClass q = new QueryClass();
-        Data d = new Data();
+        LoadData d = new LoadData();
+        SaveData sd = new SaveData();
 
 
         public MainWindow()
@@ -34,12 +35,41 @@ namespace TrackAndTrace
             ID.Instance.nextLocationID();
             loadUsersFromFile();
             loadLocationsFromFile();
+            loadContactsFromFile();
+            loadVisitsFromFile();
         }
-        public void loadLocationsFromFile()
+
+        private void loadLocationsFromFile()
         {
-
+            foreach (Location l in d.displayAllLocationsFromFile().ToList())
+            {
+                listBoxMainWindow.Items.Add(q.addLocationValidation(l.locationID, l.address));
+            }         
         }
 
+        private void loadContactsFromFile()
+        {
+            foreach (Person p in d.displayAllContactsFromFile().ToList())
+            {
+                listBoxMainWindow.Items.Add(q.recordContactDateValidation(p.userID.ToString(), p.contactUserID.ToString(), p.contactDate.ToString()));
+            }
+        }
+
+        private void loadVisitsFromFile()
+        {
+            foreach (Location l in d.displayAllVisitsFromFile().ToList())
+            {
+                listBoxMainWindow.Items.Add(q.checkIn(l.userID.ToString(), l.locationID.ToString(), l.checkInDate.ToString()));
+            }
+        }
+
+        private void SaveUsersToFile()
+        {
+            //foreach (Person p in q.returnAllPeopleList())
+            //{
+               sd.saveUsers(q.returnAllPeopleList());
+            //}
+        }
         /*
          * Person interactions
          */
@@ -47,7 +77,7 @@ namespace TrackAndTrace
         // Person Interaction : Loads the users from the Csv file and adds them to the appropriate List
         private void loadUsersFromFile()
         {
-            foreach (Person p in d.displayAllPeopleFromFile(path).ToList())
+            foreach (Person p in d.displayAllPeopleFromFile().ToList())
             {
                 listBoxMainWindow.Items.Add(q.newPersonValidation(p.userID, p.telephoneNumber));
             }
@@ -73,17 +103,22 @@ namespace TrackAndTrace
         // Person Interaction :
         private void BtnLoadUsers_Click(object sender, RoutedEventArgs e)
         {
-            listBoxMainWindow.Items.Add(d.displayAllPeopleFromFile(path));
-            foreach (Person p in d.displayAllPeopleFromFile(path).ToList())
+            loadUsers();
+        }
+
+        private void loadUsers()
+        {
+            listBoxMainWindow.Items.Add(d.displayAllPeopleFromFile());
+            foreach (Person p in d.displayAllPeopleFromFile().ToList())
             {
-                listBoxMainWindow.Items.Add(q.newPersonValidation(p.userID,p.telephoneNumber));
+                listBoxMainWindow.Items.Add(q.newPersonValidation(p.userID, p.telephoneNumber));
             }
         }
 
         // Person Interaction : Saves the contents of the person list to the CSV file.  Users are appended not overwritten.
         private void BtnSaveUsersTrack_Click(object sender, RoutedEventArgs e)
         {
-
+            SaveUsersToFile();
         }
 
         // Person Interaction :
@@ -115,7 +150,7 @@ namespace TrackAndTrace
         // Location Interaction : Button click adds a location with the deatils in the corrosponding text boxes
         private void btnAddLocation_Click(object sender, RoutedEventArgs e)
         {
-            listBoxMainWindow.Items.Add(q.addLocationValidation(txtBoxAddressTrack.Text));   
+            listBoxMainWindow.Items.Add(q.addLocationValidation(0, txtBoxAddressTrack.Text));   
             // done
         }
 
@@ -160,5 +195,22 @@ namespace TrackAndTrace
         {
             listBoxMainWindow.Items.Clear();
         }
+
+        private void BtnLoadLocationsTrack_Click(object sender, RoutedEventArgs e)
+        {
+            loadLocationsFromFile();
+        }
+
+        private void BtnSaveLocationsTrack_Click(object sender, RoutedEventArgs e)
+        {
+            saveLocationsToFile();
+        }
+
+        private void saveLocationsToFile()
+        {
+            sd.saveLocations(q.returnAllLocationsList());
+            listBoxMainWindow.Items.Add(q.returnAllLocationsList().ToList().Capacity + " Locations saved");
+        }
+
     }
 }
