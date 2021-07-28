@@ -116,10 +116,8 @@ namespace TrackAndTrace
                     }
 
                     int userID = int.Parse(values[0]);
-                    int checkInLocationID = int.Parse(values[1]);
-                    string unParsedCheckInDate = values[2] + " " + values[3];
-                    DateTime checkInDate = DateTime.Parse(unParsedCheckInDate);
-                    
+                    int checkInLocationID = int.Parse(values[1]);                    
+                    DateTime checkInDate = DateTime.Parse(values[2]);                    
                     allVisits.Add(new Location(userID, checkInLocationID, checkInDate));
                 }
             }

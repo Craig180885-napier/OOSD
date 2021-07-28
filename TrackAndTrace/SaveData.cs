@@ -14,7 +14,7 @@ namespace TrackAndTrace
         public string contactsPath = "C:\\Users\\Craig\\Documents\\University\\OOSD\\Coursework\\TrackAndTraceContacts.csv";
         public string visitsPath = "C:\\Users\\Craig\\Documents\\University\\OOSD\\Coursework\\TrackAndTraceVisits.csv";
 
-        public void saveUsers(List<Person> lp)
+        public void saveUsersToFile(List<Person> lp)
         {            
             using (var writer = new StreamWriter(usersPath))
             {
@@ -22,24 +22,33 @@ namespace TrackAndTrace
                 foreach (Person p in lp)
                 { 
                       writer.WriteLine("{0},{1}", p.userID, p.telephoneNumber);
-                }
-           
+                }           
             }
         }
 
-        public void saveLocations(List<Location> lp)
+        public void saveLocationsToFile(List<Location> lo)
         {
             using (var writer = new StreamWriter(locationsPath))
             {
                 writer.WriteLine("Location ID , Address");
-                foreach (Location l in lp)
+                foreach (Location l in lo)
                 {
                     writer.WriteLine("{0},{1}", l.locationID, l.address);
+                }
+            }
+        }
+
+        public void saveContactsToFile(List<Person> lp)
+        {
+            using (var writer = new StreamWriter(contactsPath))
+            {
+                writer.WriteLine("User ID , Contact User ID , Contact date");
+                foreach (Person p in lp.Where((p, index) => index % 2 == 0))
+                {                    
+                    writer.WriteLine("{0},{1},{2}", p.userID, p.contactUserID, p.contactDate);
                 }
 
             }
         }
-
-
     }
 }

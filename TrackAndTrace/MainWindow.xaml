@@ -68,7 +68,7 @@
         <Button x:Name="btnClearListBoxTrack" Content="Clear List Box" HorizontalAlignment="Left" Margin="488,554,0,0" VerticalAlignment="Top" Width="147" Click="BtnClearListBoxTrack_Click"/>
         <Button x:Name="btnLoadLocationsTrack" Content="Load Locations" HorizontalAlignment="Left" Margin="228,501,0,0" VerticalAlignment="Top" Width="115"/>
         <Button x:Name="btnSaveLocationsTrack" Content="Save Locations" HorizontalAlignment="Left" Margin="34,501,0,0" VerticalAlignment="Top" Width="118" Click="BtnSaveLocationsTrack_Click"/>
-        <Button x:Name="btnSaveAllContactsTrace" Content="Save Contacts" HorizontalAlignment="Left" Margin="788,539,0,0" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2" />
+        <Button x:Name="btnSaveAllContactsTrace" Content="Save Contacts" HorizontalAlignment="Left" Margin="788,539,0,0" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2" Click="BtnSaveAllContactsTrace_Click" />
 
     </Grid>
 </Window>

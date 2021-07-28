@@ -62,6 +62,11 @@ namespace TrackAndTrace
         {
             return tr.getLocations();
         }
+
+        public List<Person> returnAllContactsList()
+        {
+            return tr.getContacts();
+        }
         public string getAllPeopleQuery()
         {
             string displayAllPeopleSuccessMessage = "";

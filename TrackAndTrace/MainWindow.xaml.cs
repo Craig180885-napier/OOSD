@@ -67,7 +67,7 @@ namespace TrackAndTrace
         {
             //foreach (Person p in q.returnAllPeopleList())
             //{
-               sd.saveUsers(q.returnAllPeopleList());
+               sd.saveUsersToFile(q.returnAllPeopleList());
             //}
         }
         /*
@@ -208,9 +208,19 @@ namespace TrackAndTrace
 
         private void saveLocationsToFile()
         {
-            sd.saveLocations(q.returnAllLocationsList());
+            sd.saveLocationsToFile(q.returnAllLocationsList());
             listBoxMainWindow.Items.Add(q.returnAllLocationsList().ToList().Capacity + " Locations saved");
         }
 
+        private void BtnSaveAllContactsTrace_Click(object sender, RoutedEventArgs e)
+        {
+            saveContactsToFile();
+        }
+
+        private void saveContactsToFile()
+        {
+            sd.saveContactsToFile(q.returnAllContactsList());
+            listBoxMainWindow.Items.Add(q.returnAllContactsList().ToList().Capacity + " Contacts saved");
+        }
     }
 }
