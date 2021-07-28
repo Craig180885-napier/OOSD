@@ -69,6 +69,7 @@
         <Button x:Name="btnLoadLocationsTrack" Content="Load Locations" HorizontalAlignment="Left" Margin="228,501,0,0" VerticalAlignment="Top" Width="115"/>
         <Button x:Name="btnSaveLocationsTrack" Content="Save Locations" HorizontalAlignment="Left" Margin="34,501,0,0" VerticalAlignment="Top" Width="118" Click="BtnSaveLocationsTrack_Click"/>
         <Button x:Name="btnSaveAllContactsTrace" Content="Save Contacts" HorizontalAlignment="Left" Margin="788,539,0,0" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2" Click="BtnSaveAllContactsTrace_Click" />
+        <Button x:Name="btnSaveVisitsTrace" Content="Save Visits" Grid.Column="1" HorizontalAlignment="Left" Margin="62.2,538,0,0" VerticalAlignment="Top" Width="116" Click="BtnSaveVisitsTrace_Click"/>
 
     </Grid>
 </Window>

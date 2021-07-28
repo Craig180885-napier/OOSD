@@ -58,15 +58,21 @@ namespace TrackAndTrace
             return tr.getPeople();
         }
 
+        public List<Person> returnAllContactsList()
+        {
+            return tr.getContacts();
+        }
+
         public List<Location> returnAllLocationsList()
         {
             return tr.getLocations();
         }
 
-        public List<Person> returnAllContactsList()
+        public List<Location> returnAllVisitsList()
         {
-            return tr.getContacts();
+            return tr.getVisits();
         }
+
         public string getAllPeopleQuery()
         {
             string displayAllPeopleSuccessMessage = "";
@@ -160,45 +166,58 @@ namespace TrackAndTrace
             }
             return searchForContactsSuccessMessage;
         }
-           
+
 
         // TODO : Add comments
         public string searchForVisitsQuery(string startDate, string endDate, string visitedLocationID)
         {
             var visitList = tr.getVisits();
             var visitsSearchResults = from v in visitList
-                         where v.checkInDate >= DateTime.Parse(startDate)
-                         where v.checkInDate <= DateTime.Parse(endDate)
-                         where v.locationID == int.Parse(visitedLocationID)
-                         select v;
+                                      where v.checkInDate >= DateTime.Parse(startDate)
+                                      where v.checkInDate <= DateTime.Parse(endDate)
+                                      where v.locationID == int.Parse(visitedLocationID)
+                                      select v;
 
             //var updatedVisitList = tr.getPeople(); // TODO : test this works
 
             string listOfVisits = "List of Visits for Location ID: - ";
+            int listOfVisitsLocationID = 0;
             string searchForVisitsSuccessMessage = "";
             string searchForVisitsSuccessMessage1 = "Contact User ID : - ";
             string searchForVisitsSuccessMessage2 = "Telephone Number : - ";
             string searchForVisitsSuccessMessage3 = "Date of Visit : - ";
-           
+
             lineBreak();
 
-            foreach (Location q in visitsSearchResults.ToList())
+            if (visitsSearchResults.ToList().Capacity > 0)
             {
-                var listOfPeopleRecordedInVisits = from b in tr.getPeople()
-                              where b.userID == q.userID
-                              select b;
-
-                foreach (Person h in listOfPeopleRecordedInVisits.ToList())
-
+                foreach (Location q in visitsSearchResults.ToList())
                 {
-                    searchForVisitsSuccessMessage = searchForVisitsSuccessMessage +
-                                                    searchForVisitsSuccessMessage1 + h.userID + "\n" +
-                                                    searchForVisitsSuccessMessage2 + h.telephoneNumber + "\n" +
-                                                    searchForVisitsSuccessMessage3 + q.checkInDate + "\n" +
-                                                    lineBreak() + "\n";
+                    var listOfPeopleRecordedInVisits = from b in tr.getPeople()
+                                                       where b.userID == q.userID
+                                                       select b;
+
+                    foreach (Person h in listOfPeopleRecordedInVisits.ToList())
+
+                    {
+                        searchForVisitsSuccessMessage = searchForVisitsSuccessMessage +
+                                                        searchForVisitsSuccessMessage1 + h.userID + "\n" +
+                                                        searchForVisitsSuccessMessage2 + h.telephoneNumber + "\n" +
+                                                        searchForVisitsSuccessMessage3 + q.checkInDate + "\n" +
+                                                        lineBreak() + "\n";
+                        listOfVisitsLocationID = q.locationID;
+                    }
                 }
+                return listOfVisits + visitedLocationID + "\n" + searchForVisitsSuccessMessage;
             }
-            return listOfVisits + "\n" + searchForVisitsSuccessMessage;
+
+            else
+            {
+                string emptyListMessage =  lineBreak() + "\n" +
+                                           "No visits recorded at Location ID" + visitedLocationID + "\n" +
+                                           lineBreak() + "\n"; 
+                return listOfVisits + visitedLocationID + "\n" + emptyListMessage;
+            }
         }
         //  Class closing Brackets
     }

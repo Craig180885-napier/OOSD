@@ -222,5 +222,16 @@ namespace TrackAndTrace
             sd.saveContactsToFile(q.returnAllContactsList());
             listBoxMainWindow.Items.Add(q.returnAllContactsList().ToList().Capacity + " Contacts saved");
         }
+
+        private void BtnSaveVisitsTrace_Click(object sender, RoutedEventArgs e)
+        {
+            saveVisitsToFile();
+        }
+
+        private void saveVisitsToFile()
+        {
+            sd.saveVisitsToFile(q.returnAllVisitsList());
+            listBoxMainWindow.Items.Add(q.returnAllVisitsList().ToList().Capacity + " Visits saved");
+        }
     }
 }

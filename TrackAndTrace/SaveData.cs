@@ -21,7 +21,7 @@ namespace TrackAndTrace
                 writer.WriteLine("User ID , Telephone Number");
                 foreach (Person p in lp)
                 { 
-                      writer.WriteLine("{0},{1}", p.userID, p.telephoneNumber);
+                      writer.WriteLine("{0},{1}", p.userID, p.telephoneNumber.Remove(0,1));
                 }           
             }
         }
@@ -46,6 +46,19 @@ namespace TrackAndTrace
                 foreach (Person p in lp.Where((p, index) => index % 2 == 0))
                 {                    
                     writer.WriteLine("{0},{1},{2}", p.userID, p.contactUserID, p.contactDate);
+                }
+
+            }
+        }
+
+        public void saveVisitsToFile(List<Location> lo)
+        {
+            using (var writer = new StreamWriter(visitsPath))
+            {
+                writer.WriteLine("Check In User ID , Check In Location ID , Check In date");
+                foreach (Location l in lo)
+                {
+                    writer.WriteLine("{0},{1},{2}", l.userID, l.locationID, l.checkInDate);
                 }
 
             }

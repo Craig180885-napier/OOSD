@@ -27,6 +27,7 @@ namespace TrackAndTrace
                         var values = line.Split(',');
                     
                     int UserID = int.Parse(values[0]);
+
                     string phoneNumber = "0" + values[1];
 
                     allPeople.Add(new Person(UserID, phoneNumber));
