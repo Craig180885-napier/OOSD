@@ -13,7 +13,7 @@ namespace TrackAndTrace
     class LoadData : SaveData
     {
         
-       public List<Person> displayAllPeopleFromFile()
+       public List<Person> loadAllPeopleFromFile()
         {
             List<Person> allPeople = new List<Person>();
 
@@ -38,7 +38,7 @@ namespace TrackAndTrace
 
         }
 
-        public List<Location> displayAllLocationsFromFile()
+        public List<Location> loadAllLocationsFromFile()
         {
 
             List<Location> allLocations = new List<Location>();
@@ -68,7 +68,7 @@ namespace TrackAndTrace
             return allLocations;
         }
 
-        public List<Person> displayAllContactsFromFile()
+        public List<Person> loadAllContactsFromFile()
         {
 
             List<Person> allContacts = new List<Person>();
@@ -98,7 +98,7 @@ namespace TrackAndTrace
             return allContacts;
         }
 
-        public List<Location> displayAllVisitsFromFile()
+        public List<Location> loadAllVisitsFromFile()
         {
             List<Location> allVisits = new List<Location>();
 
