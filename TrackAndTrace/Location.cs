@@ -35,7 +35,7 @@ namespace TrackAndTrace
             _checkInDate = dateTime;
         }
 
-    
+        // Getters and Setters
         public int locationID
         {
             get

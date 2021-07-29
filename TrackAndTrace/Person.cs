@@ -12,8 +12,8 @@ namespace TrackAndTrace
         private int _contactUserID;
         private string _telephoneNumber;
         private DateTime _contactDate;
-        //private string telephonePrefix;       
-
+            
+        // Getters and Setters 
         public int userID
         {
             get
@@ -55,23 +55,25 @@ namespace TrackAndTrace
             }
         }
 
-
+        // Constructors
         public Person()
         {
            
         }
 
-        //TODO get User ID from singlton design pattern
+       // private constructor for constructor chaining
         private Person(int userID)
         {
             _userID = userID;
         }
         
+        // Constructs a person object that can be used with the people list
         public Person(int userID, string telephoneNumber) : this(userID)
         {           
             _telephoneNumber = telephoneNumber;
         }
 
+        // Constructs a person object that can be used with the contacts list
         public Person(int userID, int contactUserID, DateTime contactDate) : this(userID)
         {
             _contactUserID = contactUserID;

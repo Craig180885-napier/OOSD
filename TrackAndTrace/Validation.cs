@@ -39,17 +39,17 @@ namespace TrackAndTrace
                                                 "- Begin With a 0 \n" +
                                                 "- Be 11 numbers long or more \n" +
                                                 "- you entered: - " + phoneNumber + "\n" +
-                                                "- Please Try again";             
-                    lineBreak();
+                                                "- Please Try again" + "\n" +
+                                                 lineBreak() + "\n";    
                     return errorMessage1;
                 }
 
                 // Phone number is valid, user is added to the person list
                 else
                 { 
-                    string successMessage = "User : -" + ID.Instance.currentUserID() + " has been added" + "\n" +
-                                            "Capacity = 0 - Phone Number entered is valid - " + phoneNumber + "\n" +
-                                            lineBreak(); 
+                    string successMessage = "User : - " + ID.Instance.currentUserID() + " has been added" + "\n" +
+                                            "Phone Number entered is valid - " + phoneNumber + "\n" +
+                                            lineBreak() + "\n"; 
                     // if the user ID is 0 or less allocate the next available user ID and add the user
                     // This should not be possible in the current build  - is here incase of GUI/requirement change in the future
                     if (UserID < 1)
@@ -110,10 +110,10 @@ namespace TrackAndTrace
                     // If the phone number meets the criteria and the user ID is unique adds this user to the Person list
                     else
                     {
-                        string message5 = "is valid is : -" + isUnique + "\n" +
-                                          "User : -" + ID.Instance.currentUserID() + " has been added" + "\n" +
-                                          "Capacity > 0 - Phone Number entered is valid - " + phoneNumber + "\n" +
-                                          lineBreak() + "\n";
+                        string message5 = "User : - " + ID.Instance.currentUserID() + " has been added" + "\n" +
+                                          "Phone Number entered is valid - " + phoneNumber + "\n" +
+                                           lineBreak() + "\n";
+
                         if (UserID == 0)
                         {
                             tr.addPerson(ID.Instance.currentUserID(), phoneNumber);
@@ -150,7 +150,7 @@ namespace TrackAndTrace
                 int.Parse(userID) > lastUserID || int.Parse(contactUserID) > lastUserID ||
                 int.Parse(userID) < 1 || int.Parse(contactUserID) < 1)
             {
-                string recordContactErrorMessage1 = "there was an issue with the User ID or the Contact User ID you have entered \n" +
+                string recordContactErrorMessage1 = "There was an issue with the User ID or the Contact User ID you have entered \n" +
                                                            "Vaild User IDs range from " + 1 + " - " + lastUserID + "\n";
                                                            
                                                            return recordContactErrorMessage1;
@@ -202,8 +202,7 @@ namespace TrackAndTrace
         // TODO : Add validation for User ID, location ID and Date that ensures the strings can be parsed
         public string checkIn(string UserID, string locationID, string dateTime)
         {
-            string checkInSuccessMessage = "User :" + UserID + " has been checked into \n" +
-                                           "location ID : " + locationID + "\n" + 
+            string checkInSuccessMessage = "User :" + UserID + " has been checked into " + "location ID : " + locationID + "\n" +
                                            "at : " + DateTime.Parse(dateTime) + "\n" +
                                             lineBreak() + "\n";
             tr.checkIn(int.Parse(UserID), int.Parse(locationID), DateTime.Parse(dateTime));
