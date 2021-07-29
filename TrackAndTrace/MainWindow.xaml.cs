@@ -21,11 +21,9 @@ namespace TrackAndTrace
     public partial class MainWindow : Window
     {
         
-        //Track t = new Track();
-        //Validation v = new Validation();
-        QueryClass q = new QueryClass();
-        LoadData d = new LoadData();
-        SaveData sd = new SaveData();
+     
+        Query q = new Query();
+        LoadData d = new LoadData();      
 
         /* 
          * This method is called when the app is launched.  Sets up the singleton implementation of User ID and Location ID
@@ -127,7 +125,7 @@ namespace TrackAndTrace
         // Person Interaction : Saves the contents of the person list to the CSV file.  Users are appended not overwritten.
         private void savePeopleToFile()
         {           
-            sd.saveUsersToFile(q.returnAllPeopleList()); // Saves to CSV file      
+            d.saveUsersToFile(q.returnAllPeopleList()); // Saves to CSV file      
         }// done
 
         // Person Interaction : Save Contacts event handler.
@@ -140,7 +138,7 @@ namespace TrackAndTrace
         // the list box
         private void saveContactsToFile()
         {
-            sd.saveContactsToFile(q.returnAllContactsList()); // Saves to CSV file  
+            d.saveContactsToFile(q.returnAllContactsList()); // Saves to CSV file  
             listBoxMainWindow.Items.Add(q.returnAllContactsList().ToList().Capacity + " Contacts saved"); // outputs success message to listbox
         }// done
 
@@ -154,7 +152,7 @@ namespace TrackAndTrace
         // the list box
         private void saveLocationsToFile()
         {
-            sd.saveLocationsToFile(q.returnAllLocationsList()); // Saves to CSV file  
+            d.saveLocationsToFile(q.returnAllLocationsList()); // Saves to CSV file  
             listBoxMainWindow.Items.Add(q.returnAllLocationsList().ToList().Capacity + " Locations saved"); // outputs success message to listbox
         }// done
 
@@ -168,7 +166,7 @@ namespace TrackAndTrace
         // the list box
         private void saveVisitsToFile()
         {
-            sd.saveVisitsToFile(q.returnAllVisitsList()); // Saves to CSV file
+            d.saveVisitsToFile(q.returnAllVisitsList()); // Saves to CSV file
             listBoxMainWindow.Items.Add(q.returnAllVisitsList().ToList().Capacity + " Visits saved"); // outputs success message to listbox
         }
 

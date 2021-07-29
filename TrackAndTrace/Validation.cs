@@ -8,11 +8,16 @@ namespace TrackAndTrace
 {
     class Validation 
     {
+        /**
+         * This class has methods that perform validation upon performing an action that changes a list object in the Track.cs Class
+         * This class is the Parent of the Query Class, although not a natural parent the do perform similar actions.
+         * Inheritance was used in this case to try to  keep the code more manageable and readable
+         **/
 
         public Track tr = new Track();
         public string lineBreak()
         {  
-            return "--------------------------------------";
+            return "----------------------------------------------------------------------------------";
         }
 
         // This method validate that the phone number meets the criteria and that the User ID is unique, 
@@ -29,38 +34,37 @@ namespace TrackAndTrace
                 // Phone Number Validation, must be 11 integer numbers long, and must begin with a 0
                 if (!phoneNumber[0].Equals('0') || phoneNumber.Equals(null) || phoneNumber.Length < 11)
                 {
-                    string message1 = "Invalid Phone Number entered \n" +
+                    string errorMessage1 = "Invalid Phone Number entered \n" +
                                                 "- Your Phone Number Must: \n" +
                                                 "- Begin With a 0 \n" +
                                                 "- Be 11 numbers long or more \n" +
                                                 "- you entered: - " + phoneNumber + "\n" +
                                                 "- Please Try again";             
                     lineBreak();
-                    return message1;
+                    return errorMessage1;
                 }
 
                 // Phone number is valid, user is added to the person list
                 else
                 { 
-                    string message2 = "Empty Person List: - is valid is : -" + isUnique + "\n" +
-                            "User : -" + ID.Instance.currentUserID() + " has been added" + "\n" +
-                            "Capacity = 0 - Phone Number entered is valid - " + phoneNumber + "\n" +
-                            lineBreak(); 
-
-                    
-
-                    if (UserID == 0)
+                    string successMessage = "User : -" + ID.Instance.currentUserID() + " has been added" + "\n" +
+                                            "Capacity = 0 - Phone Number entered is valid - " + phoneNumber + "\n" +
+                                            lineBreak(); 
+                    // if the user ID is 0 or less allocate the next available user ID and add the user
+                    // This should not be possible in the current build  - is here incase of GUI/requirement change in the future
+                    if (UserID < 1)
                     {
                         tr.addPerson(ID.Instance.currentUserID(), phoneNumber);
                         ID.Instance.nextUserID();
-                        return message2;
+                        return successMessage;
                     }
 
+                    // otherwise add the user with the details supplied from the GUI
                     else
                     {
                         tr.addPerson(UserID, phoneNumber);
                         ID.Instance.nextUserID();
-                        return message2;
+                        return successMessage;
                     }
              
                 }                
@@ -69,7 +73,7 @@ namespace TrackAndTrace
             // User ID validation Step 2 - in the case where the Person list is not empty
             else if (validPeople.Capacity > 0)
             {
-                string message3 = "";
+                string errorMessage2= "";
                 foreach (Person p in validPeople.ToList())
                 {
                     // If the user ID is not unique then present an error and do not add the person to the list
@@ -77,16 +81,17 @@ namespace TrackAndTrace
                     if (p.userID == UserID)
                     /*if (p.userID == int.Parse(txtBoxUserIDTrack.Text))*/  // for demo purposes to demonstrate validation of Unique user ID
                     {
-                         message3 = "User ID : " + p.userID + " already exisits, please enter a unique user ID \n" +
+                        errorMessage2 = "User ID : " + p.userID + " already exisits, please enter a unique user ID \n" +
                                          "is valid is : -" + isUnique +
                                          lineBreak() + "\n";
                         //ID.Instance.nextUserID();
-                        return message3;
+                        return errorMessage2;
                     }                    
                     continue;
                     
                 }
 
+                // If the User ID is unique the enter if statement
                 if (isUnique == true)
                 {
                     // Phone Number Validation, must be 11 integer numbers long, and must begin with a 0
@@ -129,12 +134,14 @@ namespace TrackAndTrace
             // End of newPersonValidation method
         }
 
-        // TODO : Add a comment
+        // Person Interaction : This method ensures that the User ID and contact user ID fields have data that is parsable into an int
+        // also ensures that the IDs entered are present in the people list
+        // also ensures that the date entered is parsable into a DateTime variable
         public string recordContactDateValidation(string userID, string contactUserID, string dateTime)
         {
-            
-            int lastUserID = tr.getPeople().ToList().Capacity;
-            int firstUserID = lastUserID - (lastUserID - 1);
+            // varaiblaes that represent the first and last IDs in the people list
+            // assumes first user ID is 1, TODO : not ideal but I ran out of time to do this properly
+            int lastUserID = tr.getPeople().ToList().Capacity;            
 
             DateTime date;
             int s;
@@ -144,7 +151,7 @@ namespace TrackAndTrace
                 int.Parse(userID) < 1 || int.Parse(contactUserID) < 1)
             {
                 string recordContactErrorMessage1 = "there was an issue with the User ID or the Contact User ID you have entered \n" +
-                                                           "Vaild User IDs range from " + firstUserID + " - " + lastUserID + "\n";
+                                                           "Vaild User IDs range from " + 1 + " - " + lastUserID + "\n";
                                                            
                                                            return recordContactErrorMessage1;
             }
@@ -165,10 +172,11 @@ namespace TrackAndTrace
             }
         }
 
-        // TODO : Add validation for location ID, address
+        // Location Interaction : ensures that the location ID is not less than 1
+        // TODO : Further validation was intended here but I ran out of time
         public string addLocationValidation(int LocationID, string address)
         {
-            if(LocationID == 0 )
+            if(LocationID < 1 )
             {
                 tr.addLocation(ID.Instance.currentLocationID(), address);
 

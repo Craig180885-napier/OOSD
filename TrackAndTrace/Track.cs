@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace TrackAndTrace
 {
+
+    /**
+     * This class manages all of the lists that are used in this application 
+     **/
     class Track
     {
         List<Person> people = new List<Person>();
         List<Person> contacts = new List<Person>();
         List<Location> locations = new List<Location>();
         List<Location> listOfLocationVisits = new List<Location>();
-
-        ///
-        ///This class is where the methods to add people and locations are located  
-        ///
                      
         /*
          * Person Code
@@ -33,9 +33,10 @@ namespace TrackAndTrace
             return people;
         }
 
-        // Adds acontact event to the contacts list
+        // Adds  a contact event to the contacts list
         public void addContact(int UserID, int contactUserID, DateTime contactDate)
         {
+            // This probably could be done better but I didn't have the time to come back and try again
             contacts.Add(new Person(UserID, contactUserID, contactDate));
             contacts.Add(new Person(contactUserID, UserID, contactDate));
         }
@@ -44,8 +45,6 @@ namespace TrackAndTrace
         {
             return contacts;
         }
-
-    
     
         /*
          * Location Code
@@ -74,17 +73,6 @@ namespace TrackAndTrace
         {
             return listOfLocationVisits;
         }
-
-        // Method that writes the contents of the visits list to the console in it's entirety
-        // TODO move to the Trace class when it is built
-        public void showVisits()
-        {
-            foreach (Location c in listOfLocationVisits)
-            {
-                Console.WriteLine("Address : " + c.address);
-                Console.WriteLine("Location ID: " + c.locationID);
-                Console.WriteLine("Date & Time : " + c.checkInDate);
-            }
-        }
+      
     }
 }

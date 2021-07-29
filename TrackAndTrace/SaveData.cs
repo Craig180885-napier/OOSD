@@ -9,11 +9,13 @@ namespace TrackAndTrace
 {
     class SaveData
     {
+        // Paths to CSV files - Would normally pass these as arguments to methods but I ran out of time
         public string usersPath = "C:\\Users\\Craig\\Documents\\University\\OOSD\\Coursework\\TrackAndTraceUsers.csv";
         public string locationsPath = "C:\\Users\\Craig\\Documents\\University\\OOSD\\Coursework\\TrackAndTraceLocations.csv";
         public string contactsPath = "C:\\Users\\Craig\\Documents\\University\\OOSD\\Coursework\\TrackAndTraceContacts.csv";
         public string visitsPath = "C:\\Users\\Craig\\Documents\\University\\OOSD\\Coursework\\TrackAndTraceVisits.csv";
 
+        // Saves Users to the CSV file
         public void saveUsersToFile(List<Person> lp)
         {            
             using (var writer = new StreamWriter(usersPath))
@@ -26,6 +28,7 @@ namespace TrackAndTrace
             }
         }
 
+        // Saves Locations to the CSV file
         public void saveLocationsToFile(List<Location> lo)
         {
             using (var writer = new StreamWriter(locationsPath))
@@ -38,6 +41,7 @@ namespace TrackAndTrace
             }
         }
 
+        // Saves Contacts to the CSV file
         public void saveContactsToFile(List<Person> lp)
         {
             using (var writer = new StreamWriter(contactsPath))
@@ -51,6 +55,7 @@ namespace TrackAndTrace
             }
         }
 
+        // Saves Contacts to the CSV file
         public void saveVisitsToFile(List<Location> lo)
         {
             using (var writer = new StreamWriter(visitsPath))
