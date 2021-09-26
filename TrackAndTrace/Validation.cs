@@ -87,8 +87,7 @@ namespace TrackAndTrace
                         //ID.Instance.nextUserID();
                         return errorMessage2;
                     }                    
-                    continue;
-                    
+                    continue;                    
                 }
 
                 // If the User ID is unique the enter if statement
@@ -153,7 +152,7 @@ namespace TrackAndTrace
                 string recordContactErrorMessage1 = "There was an issue with the User ID or the Contact User ID you have entered \n" +
                                                            "Vaild User IDs range from " + 1 + " - " + lastUserID + "\n";
                                                            
-                                                           return recordContactErrorMessage1;
+                return recordContactErrorMessage1;
             }
 
            
